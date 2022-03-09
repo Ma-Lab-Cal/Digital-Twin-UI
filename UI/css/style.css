@@ -117,7 +117,7 @@ footer{
 
 /*Scrollbar*/
 .dropDownList{
-  max-height: 70vh;
+  max-height: 75vh;
   overflow: hidden;
 }
 
@@ -202,6 +202,27 @@ button.search:active{
 
 
 /*Floor Plan*/
+button.return{
+  margin-bottom: 10px;
+  height: 30px;
+  width: 25%;
+  float: left;
+  padding: 5px;
+  margin-left: 5%;
+  background: beige;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+button.return:hover{
+  background: khaki;
+}
+
+button.return:active{
+  background: yellow;
+}
+
 #flrPlan{
   padding: 10px;
 }
@@ -362,21 +383,13 @@ button.clkdedit:active{
 
 /*Environmental Plot*/
 #envPlot{
+  margin-top: 15px;
   padding: 10px;
   text-align: center;
 }
 
-#envPlot a{
-  background-color: gainsboro;
-  color: black;
-}
-
-#envPlot a:hover{
-  color: red;
-}
-
-#envPlot a:active{
-  color: blue;
+.plots{
+  margin-top: 10px;
 }
 
 button.pause{
@@ -384,7 +397,7 @@ button.pause{
   width: 25%;
   float: left;
   padding: 5px;
-  margin-left: 15%;
+  margin-left: 5%;
   background: beige;
   font-size: 20px;
   border: none;
@@ -404,7 +417,7 @@ button.clkdpause{
   width: 25%;
   float: left;
   padding: 5px;
-  margin-left: 15%;
+  margin-left: 5%;
   background: red;
   font-size: 20px;
   border: none;
@@ -417,6 +430,48 @@ button.clkdpause:hover{
 
 button.clkdpause:active{
   background: palegreen;
+}
+
+button.history{
+  margin-right: 40%;
+  height: 30px;
+  width: 25%;
+  float: left;
+  padding: 5px;
+  margin-left: 5%;
+  background: beige;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+button.history:hover{
+  background: powderblue;
+}
+
+button.history:active{
+  background: aqua;
+}
+
+button.clkdhistory{
+  margin-right: 40%;
+  height: 30px;
+  width: 25%;
+  float: left;
+  padding: 5px;
+  margin-left: 5%;
+  background: beige;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+button.clkdhistory:hover{
+  background: aquamarine;
+}
+
+button.clkdhistory:active{
+  background: lawngreen;
 }
 /*Environmental Plot*/
 
