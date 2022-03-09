@@ -43,7 +43,7 @@ function dropDown(a) {
 function changeImage(img) {
     removePoint();
     // needs improvement with regex
-    document.querySelector('.location').textContent = img.substr(4, 7);
+    // document.querySelector('.location').textContent = img.substr(4, 7);
     document.querySelector('.image').src = img;
 }
 // Change Image
@@ -132,36 +132,243 @@ function clearStyle() {
 
 
 // Data Plot
-let plotNum = 1;
+var layout = [
+    {
+        autosize: false,
+        width: 445,
+        height: 300,
+        margin: {
+            l: 35,
+            r: 25,
+            b: 30,
+            t: 45,
+            pad: 0
+        },
+        paper_bgcolor: 'ffffff',
+        plot_bgcolor: '#dcdcdc',
+        title: {
+        text:'Temperature',
+        font: {
+            family: 'Arial, Helvrtica, sans-serif',
+            size: 30
+        },
+        xref: 'paper',
+        x: 0.05,
+        },
+        xaxis: {
+        title: {
+            text: 'Time',
+            font: {
+                family: 'Arial, Helvrtica, sans-serif',
+                size: 10,
+                color: '#000000'
+            }
+        },
+        },
+        yaxis: {
+        title: {
+            text: '°C',
+            font: {
+                family: 'Arial, Helvrtica, sans-serif',
+                size: 10,
+                color: '#000000'
+            }
+        }
+        }
+    },
+    {
+        autosize: false,
+        width: 445,
+        height: 300,
+        margin: {
+            l: 35,
+            r: 25,
+            b: 30,
+            t: 45,
+            pad: 0
+        },
+        paper_bgcolor: 'ffffff',
+        plot_bgcolor: '#dcdcdc',
+        title: {
+        text:'Humidity',
+        font: {
+            family: 'Arial, Helvrtica, sans-serif',
+            size: 30
+        },
+        xref: 'paper',
+        x: 0.05,
+        },
+        xaxis: {
+        title: {
+            text: 'Time',
+            font: {
+                family: 'Arial, Helvrtica, sans-serif',
+                size: 10,
+                color: '#000000'
+            }
+        },
+        },
+        yaxis: {
+        title: {
+            text: '%',
+            font: {
+                family: 'Arial, Helvrtica, sans-serif',
+                size: 10,
+                color: '#000000'
+            }
+        }
+        }
+    },
+    {
+        autosize: false,
+        width: 445,
+        height: 300,
+        margin: {
+            l: 35,
+            r: 25,
+            b: 30,
+            t: 45,
+            pad: 0
+        },
+        paper_bgcolor: 'ffffff',
+        plot_bgcolor: '#dcdcdc',
+        title: {
+        text:'Noise',
+        font: {
+            family: 'Arial, Helvrtica, sans-serif',
+            size: 30
+        },
+        xref: 'paper',
+        x: 0.05,
+        },
+        xaxis: {
+        title: {
+            text: 'Time',
+            font: {
+                family: 'Arial, Helvrtica, sans-serif',
+                size: 10,
+                color: '#000000'
+            }
+        },
+        },
+        yaxis: {
+        title: {
+            text: 'dB',
+            font: {
+                family: 'Arial, Helvrtica, sans-serif',
+                size: 10,
+                color: '#000000'
+            }
+        }
+        }
+    },
+];
+
+var data = [
+    [
+      {
+        x: [],
+        y: [],
+        name: "Room 1",
+        mode: "lines",
+        type: "scatter",
+      },
+      {
+        x: [],
+        y: [],
+        name: "Room 2",
+        mode: "lines",
+        type: "scatter",
+      },
+      {
+        x: [],
+        y: [],
+        name: "Room 3",
+        mode: "lines",
+        type: "scatter",
+      },
+    ],
+    [
+      {
+        x: [],
+        y: [],
+        name: "Room 1",
+        mode: "lines",
+        type: "scatter",
+      },
+      {
+        x: [],
+        y: [],
+        name: "Room 2",
+        mode: "lines",
+        type: "scatter",
+      },
+      {
+        x: [],
+        y: [],
+        name: "Room 3",
+        mode: "lines",
+        type: "scatter",
+      },
+    ],
+    [
+      {
+        x: [],
+        y: [],
+        name: "Room 1",
+        mode: "lines",
+        type: "scatter",
+      },
+      {
+        x: [],
+        y: [],
+        name: "Room 2",
+        mode: "lines",
+        type: "scatter",
+      },
+      {
+        x: [],
+        y: [],
+        name: "Room 3",
+        mode: "lines",
+        type: "scatter",
+      },
+    ],
+];
+
+let numPlots = 3;
+let numRooms = 3;
 
 function getData() {
-    switch(plotNum) {
-      case 1:
-        return Math.random();
-        break;
-      case 2:
-        return Math.random() + 1;
-        break;
-      default:
-        return Math.random();
-    }
+    return Math.random();
 }
 
-Plotly.plot('chart', [{y: [getData()], type:'line'}]);
+let grow = 0;
+function growth() {
+    grow ++;
+    return grow;
+}
 
-let time = 0;
-let range = 0
+for (var i = 0; i < numPlots; i ++) {
+        Plotly.plot('chart' + i, data[i], layout[i]);
+    }
 
 setInterval(function() {
-    Plotly.extendTraces('chart',{y: [[getData()]]}, [0]);
-    time ++;
-    if (!paused) {
-        range = time;
-        if(range > 100) {
-            Plotly.relayout('chart', {xaxis: {range: [range - 100, range]}});
+    for (var i = 0; i < numPlots; i ++) {
+        for (var j = 0; j < numRooms; j ++){
+            data[i][j].x.push(growth());
+            data[i][j].y.push(getData());
+            data[i][j].x = data[i][j].x.slice(-10);
+            data[i][j].y = data[i][j].y.slice(-10);
         }
     }
-},5000);
+
+    if (!paused) {
+        for (var i = 0; i < numPlots; i ++) {
+            Plotly.redraw('chart' + i);
+        }
+    }
+}, 1000);
 // Data Plot
 
 
@@ -180,18 +387,6 @@ pause.addEventListener('click', function onClick() {
 let paused = false;
 function stopPlot() {
     paused = !paused;
-}
-
-const plots = document.querySelector('.plots');
-const switches = document.querySelector('.switch');
-let maxPlot = 2;
-function switchPlot() {
-    if (plotNum != maxPlot) {
-        plotNum++;
-    } else {
-        plotNum = 1;
-    }
-    switches.textContent = 'Plot ' + plotNum;
 }
 // Pause & Switch
 
