@@ -76,9 +76,18 @@ function objClick(name, x, y) {
 }
 
 function addPoint(x, y) {
+    if (x < maxX && y < maxY) {
+        if (x < 250 && x > 150 && y < 250 && y > 150) {
+            x = 200;
+            y = 200;
+        } else if (x < 850 && x > 650 && y < 850 && y > 650) {
+            x = 750;
+            y = 750;
+        }
+    }
     changeImage('img/Plan 00.png');
     var button = document.createElement('div');
-    button.style.position = 'fixed';
+    button.style.position = 'absolute';
     button.style.left = x + 'px';
     button.style.top = y + 'px';
     button.innerHTML = '<div class="circle"></div>';
@@ -132,30 +141,58 @@ function clearStyle() {
 
 
 // Data Plot
-var layout = [
-    {
+var layout = {
+    grid: {rows: 3, columns: 1, roworder: 'bottom to top'},
         autosize: false,
         width: 445,
-        height: 300,
+        height: 900,
         margin: {
             l: 35,
             r: 25,
             b: 30,
-            t: 45,
+            t: 20,
             pad: 0
         },
         paper_bgcolor: 'ffffff',
-        plot_bgcolor: '#dcdcdc',
-        title: {
-        text:'Temperature',
-        font: {
-            family: 'Arial, Helvrtica, sans-serif',
-            size: 30
+        plot_bgcolor: 'ffffff',
+
+        annotations: [
+        {
+            text: "Temperature",
+            font: {size: 20, color: 'black'},
+            showarrow: false,
+            align: 'center',
+            x: 0,
+            y: 1.1,
+            xref: 'x domain',
+            yref: 'y domain',
         },
-        xref: 'paper',
-        x: 0.05,
+        {
+            text: "Humidity",
+            font: {size: 20, color: 'black'},
+            showarrow: false,
+            align: 'center',
+            x: 0,
+            y: 1.1,
+            xref: 'x2 domain',
+            yref: 'y2 domain',
         },
-        xaxis: {
+        {
+            text: "Noise",
+            font: {size: 20, color: 'black'},
+            showarrow: false,
+            align: 'center',
+            x: 0,
+            y: 1.1,
+            xref: 'x3 domain',
+            yref: 'y3 domain',
+        }
+        ],
+
+        xaxis: {showticklabels: false, matches: 'x3', zeroline: false},
+        xaxis2: {showticklabels: false, matches: 'x3', zeroline: false},
+        xaxis3: {
+            zeroline: false,
         title: {
             text: 'Time',
             font: {
@@ -174,41 +211,9 @@ var layout = [
                 color: '#000000'
             }
         }
-        }
-    },
-    {
-        autosize: false,
-        width: 445,
-        height: 300,
-        margin: {
-            l: 35,
-            r: 25,
-            b: 30,
-            t: 45,
-            pad: 0
         },
-        paper_bgcolor: 'ffffff',
-        plot_bgcolor: '#dcdcdc',
-        title: {
-        text:'Humidity',
-        font: {
-            family: 'Arial, Helvrtica, sans-serif',
-            size: 30
-        },
-        xref: 'paper',
-        x: 0.05,
-        },
-        xaxis: {
-        title: {
-            text: 'Time',
-            font: {
-                family: 'Arial, Helvrtica, sans-serif',
-                size: 10,
-                color: '#000000'
-            }
-        },
-        },
-        yaxis: {
+        yaxis2: {
+            zeroline: false,
         title: {
             text: '%',
             font: {
@@ -217,41 +222,9 @@ var layout = [
                 color: '#000000'
             }
         }
-        }
-    },
-    {
-        autosize: false,
-        width: 445,
-        height: 300,
-        margin: {
-            l: 35,
-            r: 25,
-            b: 30,
-            t: 45,
-            pad: 0
         },
-        paper_bgcolor: 'ffffff',
-        plot_bgcolor: '#dcdcdc',
-        title: {
-        text:'Noise',
-        font: {
-            family: 'Arial, Helvrtica, sans-serif',
-            size: 30
-        },
-        xref: 'paper',
-        x: 0.05,
-        },
-        xaxis: {
-        title: {
-            text: 'Time',
-            font: {
-                family: 'Arial, Helvrtica, sans-serif',
-                size: 10,
-                color: '#000000'
-            }
-        },
-        },
-        yaxis: {
+        yaxis3: {
+            zeroline: false,
         title: {
             text: 'dB',
             font: {
@@ -261,14 +234,15 @@ var layout = [
             }
         }
         }
-    },
-];
+    };
 
 var data = [
-    [
       {
         x: [],
         y: [],
+        xaxis: "x",
+        yaxis: "y",
+        legendgroup: "1",
         name: "Room 1",
         mode: "lines",
         type: "scatter",
@@ -276,6 +250,9 @@ var data = [
       {
         x: [],
         y: [],
+        xaxis: "x",
+        yaxis: "y",
+        legendgroup: "2",
         name: "Room 2",
         mode: "lines",
         type: "scatter",
@@ -283,15 +260,19 @@ var data = [
       {
         x: [],
         y: [],
+        xaxis: "x",
+        yaxis: "y",
+        legendgroup: "3",
         name: "Room 3",
         mode: "lines",
         type: "scatter",
       },
-    ],
-    [
       {
         x: [],
         y: [],
+        xaxis: "x2",
+        yaxis: "y2",
+        legendgroup: "1",
         name: "Room 1",
         mode: "lines",
         type: "scatter",
@@ -299,6 +280,9 @@ var data = [
       {
         x: [],
         y: [],
+        xaxis: "x2",
+        yaxis: "y2",
+        legendgroup: "2",
         name: "Room 2",
         mode: "lines",
         type: "scatter",
@@ -306,15 +290,19 @@ var data = [
       {
         x: [],
         y: [],
+        xaxis: "x2",
+        yaxis: "y2",
+        legendgroup: "3",
         name: "Room 3",
         mode: "lines",
         type: "scatter",
       },
-    ],
-    [
       {
         x: [],
         y: [],
+        xaxis: "x3",
+        yaxis: "y3",
+        legendgroup: "1",
         name: "Room 1",
         mode: "lines",
         type: "scatter",
@@ -322,6 +310,9 @@ var data = [
       {
         x: [],
         y: [],
+        xaxis: "x3",
+        yaxis: "y3",
+        legendgroup: "2",
         name: "Room 2",
         mode: "lines",
         type: "scatter",
@@ -329,11 +320,13 @@ var data = [
       {
         x: [],
         y: [],
+        xaxis: "x3",
+        yaxis: "y3",
+        legendgroup: "3",
         name: "Room 3",
         mode: "lines",
         type: "scatter",
       },
-    ],
 ];
 
 let numPlots = 3;
@@ -349,24 +342,20 @@ function growth() {
     return grow;
 }
 
-for (var i = 0; i < numPlots; i ++) {
-        Plotly.plot('chart' + i, data[i], layout[i]);
-    }
+Plotly.plot('chart', data, layout);
 
 setInterval(function() {
     for (var i = 0; i < numPlots; i ++) {
         for (var j = 0; j < numRooms; j ++){
-            data[i][j].x.push(growth());
-            data[i][j].y.push(getData());
-            data[i][j].x = data[i][j].x.slice(-10);
-            data[i][j].y = data[i][j].y.slice(-10);
+            data[i * numPlots + j].x.push(growth());
+            data[i * numPlots + j].y.push(getData());
+            data[i * numPlots + j].x = data[i * numPlots + j].x.slice(-10);
+            data[i * numPlots + j].y = data[i * numPlots + j].y.slice(-10);
         }
     }
 
     if (!paused) {
-        for (var i = 0; i < numPlots; i ++) {
-            Plotly.redraw('chart' + i);
-        }
+        Plotly.redraw('chart');
     }
 }, 1000);
 // Data Plot
@@ -530,6 +519,7 @@ window.onload = function() {
 
   onSearchHandler();
 }
+// Search Engine
 
 
 
