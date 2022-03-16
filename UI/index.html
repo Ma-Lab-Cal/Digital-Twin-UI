@@ -12,6 +12,12 @@
 				<header>
 				</header>
 				<div class="row">
+					<div id="flrPlan" class="column">
+						<h1 class="location">Main Floor Plan</h1>
+						<!-- <a href="javascript: void();" onclick="return changeImage('img/Plan 00.png')">Return</a> -->
+						<button type="button" class="return" onclick="return changeImage('img/Plan 00.png')">Return</button>
+						<img src="img/Plan 00.png" class="image">
+					</div> <!-- flrPlan -->
 					<div id="eqpList" class="column">
 						<h1>Equipment List</h1>
 						<form action="process.php" method="POST">
@@ -22,18 +28,11 @@
 						<button type="button" class="add" onclick="pointStatusChange()">Add</button>
 						<button type="button" class="edit" onclick="pointStatusChange()">Edit</button>
 					</div> <!-- eqpList -->
-					<div id="flrPlan" class="column">
-						<h1 class="location">Main Floor Plan</h1>
-						<!-- <a href="javascript: void();" onclick="return changeImage('img/Plan 00.png')">Return</a> -->
-						<button type="button" class="return" onclick="return changeImage('img/Plan 00.png')">Return</button>
-						<img src="img/Plan 00.png" class="image">
-							<button type="button" class="pause" onclick="stopPlot()">Pause</button>
-							<button type="button" class="history">History</button>
-					</div> <!-- flrPlan -->
 					<div id="envPlot" class="column">
-						<div id="chart0" class="plots"></div>
-						<div id="chart1" class="plots"></div>
-						<div id="chart2" class="plots"></div>
+						<h1>Environmental Plots</h1>
+						<div id="chart" class="plots"></div>
+						<button type="button" class="pause" onclick="stopPlot()">Pause</button>
+						<button type="button" class="history">History</button>
 					</div> <!-- envPlot -->
 				</div> <!-- row -->
 			</div> <!-- footerHelp -->
