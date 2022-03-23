@@ -117,6 +117,12 @@ footer{
 
 /*Scrollbar*/
 .dropDownList{
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: midnightblue;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: midnightblue;
   max-height: 75vh;
   overflow: hidden;
 }
@@ -188,9 +194,6 @@ button.search:active{
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: midnightblue;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: midnightblue;
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 5px;
@@ -248,16 +251,15 @@ button.return:active{
 }
 
 #eqpList a{
-  color: white;
-  margin-left: 10px;
+  color: black;
 }
 
 #eqpList a:hover{
-  color: red;
+  color: blue;
 }
 
 #eqpList a:active{
-  color: lime;
+  color: orange;
 }
 
 #eqpList ul{
@@ -489,6 +491,8 @@ button.clkdhistory:active{
 
 /*Circle*/
 .circle {
+  font-size: 10px;
+  color: blue;
   height: 20px;
   width: 20px;
   background-color: red;
