@@ -305,7 +305,6 @@ button.add{
   position: absolute;
   height: 30px;
   width: 100px;
-  float: left;
   padding: 5px;
   margin-top: 10px;
   background: beige;
@@ -347,7 +346,6 @@ button.edit{
   position: absolute;
   height: 30px;
   width: 100px;
-  float: left;
   padding: 5px;
   margin-top: 10px;
   margin-left: 125px;
@@ -386,6 +384,80 @@ button.clkdedit:hover{
 button.clkdedit:active{
   background: orange;
 }
+
+#eqpInfo{
+  display: block;
+  padding-left: 20px;
+  padding-right: 30px;
+  background: whitesmoke;
+}
+
+#eqpInfo label{
+  display: block;
+  padding-bottom: 5px;
+}
+
+form#eqpInfo{
+  position: relative;
+  margin-top: 50px;
+}
+
+input[type=text]{
+    height: 20px;
+    width: 100%;
+    padding: 5px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none
+}
+
+textarea{
+    height: 60px;
+    width: 100%;
+    padding: 5px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none
+}
+
+button.submit{
+  margin-bottom: 10px;
+  height: 30px;
+  width: 25%;
+  padding: 5px;
+  background: beige;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+button.submit:hover{
+  background: palegreen;
+}
+
+button.submit:active{
+  background: lime;
+}
+
+#editInfo{
+  padding-top: 10px;
+  display: block;
+  padding-left: 20px;
+  padding-right: 30px;
+  background: whitesmoke;
+}
+
+#editInfo label{
+  display: block;
+  padding-bottom: 5px;
+}
+
+form#editInfo{
+  position: relative;
+  margin-top: 50px;
+}
 /*Equipment List*/
 
 
@@ -393,53 +465,10 @@ button.clkdedit:active{
 /*Environmental Plot*/
 #envPlot{
   padding: 10px;
-  text-align: center;
 }
 
 .plots{
   margin-top: 10px;
-}
-
-button.pause{
-  margin-top: 5px;
-  height: 30px;
-  width: 25%;
-  float: left;
-  padding: 5px;
-  margin-left: 5%;
-  background: beige;
-  font-size: 20px;
-  border: none;
-  cursor: pointer;
-}
-
-button.pause:hover{
-  background: mistyrose;
-}
-
-button.pause:active{
-  background: lightcoral;
-}
-
-button.clkdpause{
-  margin-top: 5px;
-  height: 30px;
-  width: 25%;
-  float: left;
-  padding: 5px;
-  margin-left: 5%;
-  background: red;
-  font-size: 20px;
-  border: none;
-  cursor: pointer;
-}
-
-button.clkdpause:hover{
-  background: salmon;
-}
-
-button.clkdpause:active{
-  background: palegreen;
 }
 
 button.history{
@@ -472,18 +501,54 @@ button.clkdhistory{
   float: left;
   padding: 5px;
   margin-left: 5%;
-  background: beige;
+  background: red;
   font-size: 20px;
   border: none;
   cursor: pointer;
 }
 
 button.clkdhistory:hover{
-  background: aquamarine;
+  background: salmon;
 }
 
 button.clkdhistory:active{
-  background: lawngreen;
+  background: aqua;
+}
+
+#plotFunc{
+  display: block;
+  padding-left: 20px;
+  padding-right: 30px;
+  background: whitesmoke;
+}
+
+#plotFunc label{
+  display: block;
+  padding-bottom: 5px;
+}
+
+form#plotFunc{
+  position: relative;
+  margin-top: 50px;
+}
+
+button.download{
+  margin-bottom: 10px;
+  height: 30px;
+  width: 30%;
+  padding: 5px;
+  background: beige;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+button.download:hover{
+  background: pink;
+}
+
+button.download:active{
+  background: deeppink;
 }
 /*Environmental Plot*/
 
