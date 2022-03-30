@@ -300,7 +300,7 @@ let numRooms = 3;
 
 function getData() {return Math.random();}
 
-let grow = 0;
+let grow = 1;
 function growth() {
     grow += 1;
     return grow;
