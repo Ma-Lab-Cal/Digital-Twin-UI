@@ -26,17 +26,7 @@ function timeConverter(timestamp) {
   var time = month + ' ' + date + ' ' + hour + ':' + min + ':' + sec;
   return time;
 
-  function timeRecognize(texttime) {
-    const [dateComponents, timeComponents] = texttime.split(' ');
-
-    const [month, day, year] = dateComponents.split('/');
-    const [hours, minutes, seconds] = timeComponents.split(':');
-
-    const date = new Date(+year, month - 1, +day, +hours, +minutes, +seconds);
-
-    const unixTimestamp = Math.floor(date.getTime() / 1000);
-    return unixTimestamp;
-  }
+  
 }
 
 // function timeConverter(timestamp) {
@@ -52,6 +42,18 @@ function timeConverter(timestamp) {
 //   var time = year + '-' + month + '-' + date// + '-' + hour + '-' + min + '-' + sec;
 //   return time;
 // }
+
+function timeRecognize(texttime) {
+    const [dateComponents, timeComponents] = texttime.split(' ');
+
+    const [month, day, year] = dateComponents.split('/');
+    const [hours, minutes, seconds] = timeComponents.split(':');
+
+    const date = new Date(+year, month - 1, +day, +hours, +minutes, +seconds);
+
+    const unixTimestamp = Math.floor(date.getTime() / 1000);
+    return unixTimestamp;
+}
 // Time
 
 
